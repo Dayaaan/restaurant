@@ -1,5 +1,16 @@
 <!-- Message de notification -->
+<?php
+	 
+	 $sql = "SELECT * FROM product";
+	 $db = new Database;   
+	 $productList = $db->query($sql);
 
+
+	 foreach ($productList as $product) {
+	 	
+	 }
+	
+?>
 <!-- Code HTML à écrire -->
 
 
@@ -7,6 +18,22 @@
 <table class="generic-table meal-list">
     <caption>Carte du restaurant</caption>
     <tbody>
+    	<?php foreach ($productList as $product) : ?>
+    	<tr>
+    		<td>
+    			<img src="" alt=""/>
+    		</td>
+    		<td>
+    			<strong><?= $product["name"]; ?></strong>
+    			<p><?= $product["description"]; ?></p>
+    		</td>
+    		<td>
+    			<strong><?= round($product["priceHT"] * $product["tax"], 2); ?> € </strong>
+    		</td>
+    	</tr>
 
-        <!-- Code HTML à écrire -->
+    	<?php endforeach; ?>
+
+	</tbody>
+
 </table>
