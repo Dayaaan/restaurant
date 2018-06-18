@@ -1,16 +1,5 @@
 <!-- Message de notification -->
-<?php
-	 
-	 $sql = "SELECT * FROM product";
-	 $db = new Database;   
-	 $productList = $db->query($sql);
 
-
-	 foreach ($productList as $product) {
-	 	
-	 }
-	
-?>
 <!-- Code HTML à écrire -->
 
 
@@ -21,14 +10,15 @@
     	<?php foreach ($productList as $product) : ?>
     	<tr>
     		<td>
-    			<img src="" alt=""/>
+    			<img src="<?= $wwwUrl ?>/<?= $product["image"]; ?>" alt=""/>
     		</td>
     		<td>
     			<strong><?= $product["name"]; ?></strong>
     			<p><?= $product["description"]; ?></p>
     		</td>
     		<td>
-    			<strong><?= round($product["priceHT"] * $product["tax"], 2); ?> € </strong>
+    			<strong><?= number_format($product["priceHT"] * $product["tax"],2); ?> €
+                </strong>
     		</td>
     	</tr>
 
