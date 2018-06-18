@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.8.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 18, 2018 at 05:03 PM
--- Server version: 5.7.22-0ubuntu0.16.04.1
--- PHP Version: 7.0.30-0ubuntu0.16.04.1
+-- Hôte : 127.0.0.1
+-- Généré le :  lun. 18 juin 2018 à 21:55
+-- Version du serveur :  10.1.30-MariaDB
+-- Version de PHP :  7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `restaurant`
+-- Base de données :  `restaurant`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking`
+-- Structure de la table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -38,7 +40,7 @@ CREATE TABLE `booking` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Structure de la table `order`
 --
 
 CREATE TABLE `order` (
@@ -52,7 +54,7 @@ CREATE TABLE `order` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_line`
+-- Structure de la table `order_line`
 --
 
 CREATE TABLE `order_line` (
@@ -66,7 +68,7 @@ CREATE TABLE `order_line` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Structure de la table `product`
 --
 
 CREATE TABLE `product` (
@@ -82,7 +84,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product`
+-- Déchargement des données de la table `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `priceHT`, `tax`, `quantity`, `image`, `created_at`, `update_at`) VALUES
@@ -96,7 +98,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `priceHT`, `tax`, `quantity`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -115,33 +117,34 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `birthday`, `email`, `password`, `address`, `city`, `zipcode`, `phone`, `created_at`, `updated_at`) VALUES
 (1, 'Martin', 'Nguyen', '1989-12-06', 'martin@gmail.com', 'martin', '3 Boulevard Jules Verne', 'Rezé', '44400', '652145228', '2018-06-15 00:00:00', '2018-06-15 00:00:00'),
-(9, 'Paul', 'Logan', '1940-01-01', 'logan@gmail.com', '$2y$10$NUWRwC/JLDTPYCohosVuleDm/u0N4cBCCnIW.inXUCmcGckvzYPJe', '3 bd jules verne Logan44-', 'Nantes', '44300', '0240506555', '2018-06-18 16:15:10', '2018-06-18 16:15:10');
+(9, 'Paul', 'Logan', '1940-01-01', 'logan@gmail.com', '$2y$10$NUWRwC/JLDTPYCohosVuleDm/u0N4cBCCnIW.inXUCmcGckvzYPJe', '3 bd jules verne Logan44-', 'Nantes', '44300', '0240506555', '2018-06-18 16:15:10', '2018-06-18 16:15:10'),
+(11, 'dayfez', 'Dayan', '1940-01-01', 'dayan@gmail.com', '$2y$10$pSIW9elBaFSFkq0V058IHe9gSS0ILmQSS11varL2Y.nwdrstFrQAe', 'fezfz', 'fezfez', '44400', '4400', '2018-06-18 21:43:56', '2018-06-18 21:43:56');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `booking`
+-- Index pour la table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order`
+-- Index pour la table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order_line`
+-- Index pour la table `order_line`
 --
 ALTER TABLE `order_line`
   ADD PRIMARY KEY (`id`),
@@ -149,68 +152,74 @@ ALTER TABLE `order_line`
   ADD KEY `order_id` (`order_id`);
 
 --
--- Indexes for table `product`
+-- Index pour la table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `booking`
+-- AUTO_INCREMENT pour la table `booking`
 --
 ALTER TABLE `booking`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT pour la table `order`
 --
 ALTER TABLE `order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `order_line`
+-- AUTO_INCREMENT pour la table `order_line`
 --
 ALTER TABLE `order_line`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `booking`
+-- Contraintes pour la table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `order`
+-- Contraintes pour la table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `order_line`
+-- Contraintes pour la table `order_line`
 --
 ALTER TABLE `order_line`
   ADD CONSTRAINT `order_line_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `order_line_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

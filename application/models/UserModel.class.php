@@ -31,5 +31,17 @@ class UserModel {
         return $result;    
 	}
 
+	public function processLogin($email,$password) {
+
+		$sql = "SELECT * FROM user WHERE email LIKE ? AND password LIKE ?";
+
+		$db = new Database();
+
+		$result = $db->queryOne($sql, [$email,$password]);
+
+		return $result;
+
+	}
+
 
 }	

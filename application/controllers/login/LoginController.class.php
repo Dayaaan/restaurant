@@ -9,30 +9,47 @@ class LoginController
 
     public function httpPostMethod(Http $http, array $formFields)
     {
+        $user = [];
+
         if (isset($_POST["submit"])) {
 
-            $error = [];
+            if (empty($_POST['email'])) {
 
-            $user = []
-
-            if ( empty($_POST["email"]) ) {
-
-                $error["email"] = "Veuillez rentrer un email Valide";
+                throw new Exception("Email empty");
 
             } else {
 
-                $user["email"] = $_POST["email"]; 
+                $user["email"] = $_POST["email"];
+
             }
+            if (empty($_POST['password'])) {
 
-            if ( empty($_POST["password"]) ) {
-
-                $error["password"] = "Veuillez rentrer un mot de passe";
+                throw new Exception("password empty");
 
             } else {
 
                 $user["password"] = $_POST["password"];
 
             }
+            $login = new UserModel();
+            $author = $login->processLogin($user["email"],$user["password"]);
+
         }
+
+        
+
+        if ($author == null) {
+            throw new Exception("L'utilisateur email n'existe pas et/ou le mot de passe n'est pas bon");
+
+        } else {
+                
+                $_SESSION['id'] = $author['id'];
+
+
+
+               /*header("Location:$requestUrl");*/
+        }
+        
+
     }
 }

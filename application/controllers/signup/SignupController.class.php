@@ -9,7 +9,7 @@ class SignupController
 
     public function httpPostMethod(Http $http, array $formFields)
     {
-        $userModel = new UserModel();
+        $accountModel = new UserModel();
 
         $toolsModel = new ToolsModel();
 
@@ -50,7 +50,7 @@ class SignupController
 
             $email = $_POST["email"];
 
-            if ( $userModel->exists($email) ) {
+            if ( $accountModel->exists($email) ) {
 
                 die("votre email est deja utilisé");
 
@@ -84,7 +84,7 @@ class SignupController
 
             
 
-            $userModel->createAccount($account);
+            $accountModel->createAccount($account);
 
         } else {
             die("Veuillez remplir les champs");
