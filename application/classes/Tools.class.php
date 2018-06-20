@@ -1,8 +1,8 @@
 <?php 
 
-class ToolsModel {
+class Tools {
 
-	public function validate_name($thing) {
+	static function validate_name($thing) {
 
 		if ( preg_match('`^([a-zA-Z0-9-_]{2,36})$`', $thing) ) {
 
@@ -15,7 +15,7 @@ class ToolsModel {
 	}
 
 
-	public function validate_password($password) {
+	static function validate_password($password) {
 
 		if ( preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST["password"]) ) {
 
@@ -28,7 +28,7 @@ class ToolsModel {
 
 	}
 
-	public function validate_email($email) {
+	static function validate_email($email) {
 
 		if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $email ) )	{
 
@@ -38,6 +38,25 @@ class ToolsModel {
 
 			return false;
 		}
+
+	}
+
+	static function pre($thing) {
+		
+		echo "<pre>";
+
+		print_r($thing);
+
+		echo "</pre>";
+	} 
+
+	static function getPriceTTC($prixHT) {
+		return $prixHT * 1.2;
+	}
+
+	static function getPrettyPrice($priceHT) {
+
+		return number_format(Tools::getPriceTTC($priceHT),2);
 
 	}
 

@@ -11,7 +11,6 @@ class SignupController
     {
         $accountModel = new UserModel();
 
-        $toolsModel = new ToolsModel();
 
         if (!empty($_POST["firstName"]) || !empty($_POST["lastName"]) || !empty($_POST["adress"]) || !empty($_POST["email"]) || !empty($_POST["adress"]) || !empty($_POST["zipCode"]) || !empty($_POST["password"]) || !empty($_POST["phone"]) || !empty($_POST["city"])) {
 
@@ -27,7 +26,7 @@ class SignupController
 
             $account = [];
 
-            if ( $toolsModel->validate_name($_POST["lastName"]) ) {
+            if ( Tools::validate_name($_POST["lastName"]) ) {
 
                  $account["lastname"] = $_POST["lastName"];
 
@@ -37,7 +36,7 @@ class SignupController
             }
 
 
-            if ( $toolsModel->validate_name($_POST["firstName"]) ) {
+            if ( Tools::validate_name($_POST["firstName"]) ) {
 
                  $account["firstname"] = $_POST["firstName"];
 
@@ -59,9 +58,9 @@ class SignupController
                 $account["email"] = $email;
             }
             
-            if( $toolsModel->validate_password($_POST["password"]) ) {
+            if( Tools::validate_password($_POST["password"]) ) {
 
-                $account["password"] = password_hash($_POST["password"],PASSWORD_BCRYPT);
+                $account["password"] = password_hash($_POST["password"],PASSWORD_DEFAULT);
 
 
             } else {

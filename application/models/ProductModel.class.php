@@ -1,7 +1,7 @@
 <?php 
 
 class ProductModel {
-	public function getAllProducts() {
+	static function getAllProducts() {
 
 		 $sql = "SELECT * FROM product";
 

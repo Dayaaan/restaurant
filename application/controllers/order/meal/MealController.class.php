@@ -1,15 +1,27 @@
 <?php
 
 
-class HomeController
+class MealController
 {
     public function httpGetMethod(Http $http, array $queryFields)
-    {
-        $productList = ProductModel::getAllProducts();
+    {   
+        $meal_id = $_GET['id'];
 
 
-        return ["productList" => $productList];
 
+        $meal = MealModel::getMeal($meal_id);
+
+
+        header('Content-Type: text/json');
+        
+
+        $http->sendJsonResponse($meal);
+
+
+
+
+        
+        
     }
 
     public function httpPostMethod(Http $http, array $formFields)

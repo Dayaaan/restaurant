@@ -132,6 +132,10 @@ html
     /* presentation */
     list-style-type: none;
 }
+.link-list {
+    display: flex;
+    justify-content: space-around;
+}
 .link-list li
 {
     display: inline-block;

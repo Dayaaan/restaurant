@@ -1,15 +1,19 @@
 <?php
 
 
-class HomeController
+class OrderController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
+        UserSession::isConnected();
+
         $productList = ProductModel::getAllProducts();
+
 
 
         return ["productList" => $productList];
 
+        
     }
 
     public function httpPostMethod(Http $http, array $formFields)

@@ -35,16 +35,32 @@
 <nav class="user-interface">
     <ul class="link-list">
         <li>
-            <a class="button button-primary" href="<?= $requestUrl ?>/Signup">Créer un compte</a>
+            <a class="button button-primary" href="<?= $requestUrl ?>/Signup">Créer un compte
+            </a>
+        </li>
+        <?php if (isset($_SESSION['id'])) : ?>
+            <?php $userModel = UserModel::getUserById($_SESSION['id']); ?>
+        <li>
+            <a class="button button-primary" href="<?= $requestUrl ?>/Booking?id=<?= $userModel['id']; ?>">Réserver
+            </a>
         </li>
         <li>
-            <a class="button button-primary" href="<?= $requestUrl ?>/Booking">Réserver</a>
+            <a class="button button-primary" href="<?= $requestUrl ?>/Order">Commander
+            </a>
         </li>
         <li>
-            <a class="button button-primary" href="<?= $requestUrl ?>/Order">Commander</a>
+            <a class="button button-primary" href="<?= $requestUrl ?>/Logout">Deconnection
+            </a>
         </li>
-        <li>
-            <a class="button button-primary" href="<?= $requestUrl ?>/Login">Connnexion</a>
+        <style>
+            .link-list li:first-child, .link-list li:last-child {
+                display: none;
+            }
+        </style>
+        <?php endif; ?>
+         <li>
+            <a class="button button-primary" href="<?= $requestUrl ?>/Login">Connnexion
+            </a>
         </li>
     </ul>
 </nav>
@@ -56,6 +72,14 @@
 
 <!-- Pied de page commun -->
 <footer>
+<!--     <?php 
+
+  
+
+    // Tools::pre($_SESSION);
+
+
+    ?> -->
     <ul class="link-list">
         <li><img src="<?= $wwwUrl ?>/images/payment/visa.png" alt="Visa"></li>
         <li><img src="<?= $wwwUrl ?>/images/payment/mastercard.png" alt="MasterCard"></li>

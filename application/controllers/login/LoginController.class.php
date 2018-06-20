@@ -28,26 +28,29 @@ class LoginController
 
             } else {
 
-                $user["password"] = $_POST["password"];
 
-            }
-            $login = new UserModel();
-            $author = $login->processLogin($user["email"],$user["password"]);
+                $userModel = new UserModel();
 
-        }
+                $userByEmail = $userModel->getUserByEmail($user["email"]);
 
-        
-
-        if ($author == null) {
-            throw new Exception("L'utilisateur email n'existe pas et/ou le mot de passe n'est pas bon");
-
-        } else {
-                
-                $_SESSION['id'] = $author['id'];
+                if (empty($userByEmail)) {
+                    return ['errorMessage' => 'Email incorrect'];
+                }
 
 
+                if ( password_verify($_POST["password"], $userByEmail["password"]) ) {
 
-               /*header("Location:$requestUrl");*/
+                    $_SESSION['id'] = $userByEmail['id'];
+
+                    $http->redirectTo('');
+
+                } else {
+
+                    return ['errorMessage' => 'Mot de passe incorrect'];
+                }
+
+            }    
+
         }
         
 

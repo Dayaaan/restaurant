@@ -17,7 +17,7 @@
     			<p><?= $product["description"]; ?></p>
     		</td>
     		<td>
-    			<strong><?= number_format($product["priceHT"] * $product["tax"],2); ?> €
+    			<strong><?= Tools::getPrettyPrice($product["priceHT"]); ?> €
                 </strong>
     		</td>
     	</tr>

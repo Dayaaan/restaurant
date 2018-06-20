@@ -43,5 +43,26 @@ class UserModel {
 
 	}
 
+	public function getUserByEmail($email) {
+		$sql = "SELECT * FROM user WHERE email = ?";
+
+		$db = new Database();
+
+		$result = $db->queryOne($sql, [$email]);
+
+		return $result;
+	}
+
+	static function getUserById($id) {
+		$sql = "SELECT * FROM user WHERE id = ?";
+
+		$db = new Database();
+
+		$result = $db->queryOne($sql, [$id]);
+
+		return $result;
+	}
+
+
 
 }	

@@ -21,7 +21,7 @@
 			<li>
 				<label for="birthDay">Date de naissance :</label>
 				<select id="birthDay" name="birthDay">
-					<?php for ($i = 0; $i < 12 ; $i++) : ?>
+					<?php for ($i = 0; $i < 31 ; $i++) : ?>
 
 						<option value="<?= $i + 1; ?>"><?= $i + 1; ?></option>
 					
@@ -87,7 +87,7 @@
 	<ul>
 		<li>
 			<input class="button button-primary" name="submit"type="submit" value="Créer le compte">
-			<a class="button button-cancel small" href="/dev/resto/final/index.php">Annuler</a>
+			<a class="button button-cancel small" href="<?= $requestUrl ?>">Annuler</a>
 		</li>
 	</ul>
 </form> 
