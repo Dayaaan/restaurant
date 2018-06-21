@@ -1,6 +1,7 @@
 <?php 
 
 class ProductModel {
+
 	static function getAllProducts() {
 
 		 $sql = "SELECT * FROM product";
@@ -12,4 +13,6 @@ class ProductModel {
 		 return $productList;
 
 	}
+
+
 }

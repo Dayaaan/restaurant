@@ -1,6 +1,6 @@
 <h2><i class="fa fa-shopping-cart"></i> Passer une commande</h2>
 
-<form data-order-step="run" id="order-form" class="generic-form">
+<form data-order-step="run" id="order-form" method="POST" action="<?= $requestUrl ?>/Order/Basket" class="generic-form">
 
     <!-- Champ caché stockant le prix de vente du produit alimentaire sélectionné -->
     <input type="hidden" name="salePrice">
@@ -20,11 +20,14 @@
                 <select id="meal" name="meal">
                 <?php foreach($productList as $product) : ?>
                     <option value="<?= $product["id"];?>"><?= $product["name"];?></option>
+
                 <?php endforeach; ?>
                 </select>
                 <article id="meal-details" class="meal-details no-left-label">
                     <img src="" alt="">
+                    <input class="name_product" name="name_product" type="hidden" value="">
                     <p class="meal-name"></p>
+                    <input class="priceHT" name="priceHT" type="hidden" value="">
                     <span>Prix: <strong></strong></span><br><br><br>
                     <span>Stock: <em style="color:green;font-weight:bold;"></em></span>
                 </article>
@@ -34,7 +37,7 @@
                 <input id="quantity" class="quantity" type="text" maxlength="2" name="quantity" data-name="Quantité" data-type="positive-integer" data-required>
             </li>
             <li>
-                <button id="btn-add" class="button button-primary no-left-label" type="submit">Ajouter</button>
+                <button id="btn-add" class="button button-primary no-left-label" type="button">Ajouter</button>
             </li>
         </ul>
     </fieldset>
@@ -47,14 +50,12 @@
                     <tr>
                     <th>Quantité: </th>
                     <th>Produit: </th>
-                    <th>Prix HT: </th>
+                    <th>Prix unitaire HT: </th>
                     <th>Prix TTC: </th>
                     </tr>
+                                          
                     <tr>
-                        <td class="basket-empty">Votre panier est vide</td>
-                    </tr>
-                    <tr>
-                        <td class="quantity_meal"></td>
+                        <td colspan="4" class="basket-empty">Votre panier est vide</td>
                     </tr>
 
                 </tbody>

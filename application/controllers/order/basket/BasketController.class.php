@@ -8,6 +8,9 @@ class BasketController
 
 
 
+        
+
+
 
 
         
@@ -17,16 +20,33 @@ class BasketController
     public function httpPostMethod(Http $http, array $formFields)
     {
         
-    	$quantity = $_POST['quantity'];
+        print_r($_POST);
 
+            
+
+        if (isset($_POST['quantity'])) {
+
+
+            
+
+
+            $_SESSION["cart"]['quantity'] = $_POST["quantity"];
+
+            $_SESSION["cart"]["name"] = $_POST["name_product"];
+
+            $_SESSION["cart"]["priceHT"] = $_POST["priceHT"];
+
+
+
+
+
+         
+
+        }
+    	
         
 
-        $meal = MealModel::getMeal($meal_id);
 
-
-        header('Content-Type: text/json');
-        
-
-        $http->sendJsonResponse($meal);
+       
     }
 }
