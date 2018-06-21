@@ -1,52 +1,25 @@
-<?php
-
+<?php 
 
 class BasketController
 {
     public function httpGetMethod(Http $http, array $queryFields)
-    {   
+    {
+        $products = Basket::getProductsWithQuantity();
 
-
-
-        
-
-
-
-
-        
-        
+        return ['products' => $products, '_raw_template' => true];      
     }
 
     public function httpPostMethod(Http $http, array $formFields)
     {
-        
-        print_r($_POST);
 
-            
+        $quantity = $formFields['quantity'];
+        $productId = $formFields['id'];
 
-        if (isset($_POST['quantity'])) {
+        Basket::add($productId, $quantity);
 
+        $products = Basket::getProductsWithQuantity();
 
-            
-
-
-            $_SESSION["cart"]['quantity'] = $_POST["quantity"];
-
-            $_SESSION["cart"]["name"] = $_POST["name_product"];
-
-            $_SESSION["cart"]["priceHT"] = $_POST["priceHT"];
-
-
-
-
-
-         
-
-        }
-    	
-        
-
-
-       
+        return ['products' => $products, '_raw_template' => true];
     }
+
 }

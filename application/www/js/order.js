@@ -54,37 +54,45 @@ $(function() {
 
 	$("select[name='meal']").trigger('change');
 
-	$('#btn-add').on("click", function() {
+	$('#btn-add').on('click', function () {
 
-					$('.basket-empty').addClass("hidden");
+		var quantity = $("#quantity").val();
 
-					var urlBasket = getRequestUrl() + "/Order/Basket";
+		var productId = $('select').val();
 
-					var quantity = $('#quantity').val();
+		console.log('quantity', quantity, 'product', productId);
 
-					var name = $('.name_product').val();
+		var url = getRequestUrl() + '/Order/Basket';
 
-					var priceHT = $('.priceHT').val();
+		var params = {};
 
-					var params2 = { quantity_meal: quantity,
-									name_meal : name,
-									priceHT_meal : priceHT };
+		params.id = productId;
 
-					$.post(urlBasket, params2 , function (basket) {
+		params.quantity = quantity;
 
-
-						$('tbody').append("<tr>");
-						$('tbody').append("<td>" + params2.quantity_meal + "</td>");
-						$('tbody').append("<td>" + params2.name_meal + "</td>");
-						$('tbody').append("<td>" + params2.priceHT_meal + "€</td>");
-						$('tbody').append("<td>" + params2.priceHT_meal * params2.quantity_meal * 1.2 + "€</td>");
-						$('tbody').append("</tr>");
-						
-					});
+		console.log(params);
 
 
+		$.post(url, params, function (html) {
 
-				});
+			$('tbody').html(html);
+
+		});
+
+	});
+
+
+	function loadCart() {
+		// load cart
+		var url = getRequestUrl() + '/Order/Basket';
+
+		$.get(url, function (html) {
+			$('tbody').html(html);
+		});	
+	}
+
+	loadCart();
+
 	
 		
 

@@ -6,7 +6,7 @@ Class SessionFilter implements InterceptingFilter {
 
 		session_start(); 
 
-		
+		Basket::init();
 
 	}
 
