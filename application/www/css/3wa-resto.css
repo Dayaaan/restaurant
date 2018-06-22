@@ -94,6 +94,9 @@ html
     background: url('../images/background.png') repeat;
     overflow-y: scroll;
 }
+ul {
+    list-style-type: none;
+}
 
 
 /*

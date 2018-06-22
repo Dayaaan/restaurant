@@ -3,6 +3,7 @@
     <th>Produit: </th>
     <th>Prix unitaire HT: </th>
     <th>Prix TTC: </th>
+    <th>Supprimer: </th>
     </tr>
     <?php if (Basket::getProductNumber() < 1) : ?>
 
@@ -13,12 +14,16 @@
     
 <?php foreach ($products as $product): ?>
 
+
+
 	<tr>
 		<td><?= $product['quantity'] ?></td>
 		<td><?= $product['name'] ?></td>
 		<td><?= Tools::getPriceTTC($product['priceHT']) ?></td>
 		<td><?= Tools::getPriceTTC($product['priceHT'] * $product['quantity']) ?></td>
-		<td><button class="btn-delete" data-id="<?= $product['id'] ?>">Supprimer</button></td>
+		<td>
+            <button type="button" class="btn-delete" data-id="<?= $product['id'] ?>">Supprimer</button>
+        </td>
 	</tr>
 
 <?php endforeach ?>

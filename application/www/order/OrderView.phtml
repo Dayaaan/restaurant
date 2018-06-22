@@ -1,6 +1,6 @@
 <h2><i class="fa fa-shopping-cart"></i> Passer une commande</h2>
 
-<form data-order-step="run" id="order-form" method="POST" action="<?= $requestUrl ?>/Order/Basket" class="generic-form">
+
 
     <!-- Champ caché stockant le prix de vente du produit alimentaire sélectionné -->
     <input type="hidden" name="salePrice">
@@ -56,11 +56,13 @@
 
     <ul class="link-list2">
         <li>
-            <button id="validate-order" class="button button-primary" >Valider la commande</button>
+            <form method="post" action="<?= $requestUrl ?>/Validation">
+                <button id="validate-order" class="button button-primary">Valider la commande</button>
+            </form>
             <a class="button button-cancel small" href="<?= $requestUrl ?>">Annuler</a>
         </li>
     </ul>
-</form>
+
 
 <script src="<?= $wwwUrl ?>/js/utilities.js"></script>
 <script src="<?= $wwwUrl ?>/js/order.js"></script>

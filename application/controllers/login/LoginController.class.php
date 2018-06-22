@@ -42,7 +42,6 @@ class LoginController
 
                     $_SESSION['id'] = $userByEmail['id'];
 
-                    $_SESSION["cart"] = [];
 
 
                     $http->redirectTo('');

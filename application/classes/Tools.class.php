@@ -51,7 +51,7 @@ class Tools {
 	} 
 
 	static function getPriceTTC($prixHT) {
-		return $prixHT * 1.2;
+		return number_format($prixHT * 1.2,2);
 	}
 
 	static function getPrettyPrice($priceHT) {

@@ -15,7 +15,7 @@ $(function() {
 		//objet js
 		var params = { id: productId };
 
-
+		//on peut le faire sans JSON 
 		$.getJSON(urlPHP, params, function (meal) {
 
 			$('.meal-name').html("");
@@ -93,7 +93,34 @@ $(function() {
 
 	loadCart();
 
-	
+
+	$(document).on("click", ".btn-delete" , function () { 
+
 		
+
+		var url = getRequestUrl() + '/Order/Basket';
+
+		var params = {};
+
+		params.delId = $(this).attr("data-id");
+
+		console.log(params);
+
+
+		$.post(url, params, function (html) {
+
+			$('tbody').html(html);
+
+		});
+
+		
+
+
+
+	});
+
+
+	
+
 
 })

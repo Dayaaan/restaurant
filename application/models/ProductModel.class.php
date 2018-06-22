@@ -25,5 +25,10 @@ class ProductModel {
 		return $db->queryOne($sql, $params);
 	}
 
+	public static function calculSumHTByOrderId($order_id) {
 
-}
+		
+		$sql = "SELECT SUM(priceHT) FROM order_line WHERE order_id = ?";
+
+	}
+}	

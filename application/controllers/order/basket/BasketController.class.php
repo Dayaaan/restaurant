@@ -12,10 +12,27 @@ class BasketController
     public function httpPostMethod(Http $http, array $formFields)
     {
 
-        $quantity = $formFields['quantity'];
-        $productId = $formFields['id'];
+    
 
-        Basket::add($productId, $quantity);
+        
+
+        if ( isset($formFields["delId"]) ) {
+
+            $productDelId = $formFields['delId'];
+
+            Basket::delete($productDelId);
+
+        } else {
+
+            $quantity = $formFields['quantity'];
+            
+            $productId = $formFields['id'];
+
+            Basket::add($productId, $quantity);
+
+            
+
+        }
 
         $products = Basket::getProductsWithQuantity();
 

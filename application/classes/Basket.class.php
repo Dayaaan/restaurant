@@ -40,6 +40,7 @@ class Basket {
             $product['quantity'] = $quantity;
 
             $products[] = $product;
+
         }
         
 
@@ -50,6 +51,20 @@ class Basket {
 
     	return count($_SESSION['cart']);
     }
+
+
+    static function delete($productId) {
+
+    	$cart = $_SESSION['cart'];
+
+        unset($cart[$productId]);
+
+        $_SESSION['cart'] = $cart;
+    	
+
+    }
+
+    
 
 
 }

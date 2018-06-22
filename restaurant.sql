@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2018 at 05:07 PM
+-- Generation Time: Jun 22, 2018 at 05:01 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.0.30-0ubuntu0.16.04.1
 
@@ -52,9 +52,18 @@ CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `tax` decimal(10,0) NOT NULL,
   `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`id`, `user_id`, `created_at`, `status`) VALUES
+(6, 16, '2018-06-22 16:41:44', 1),
+(7, 16, '2018-06-22 16:42:49', 1),
+(8, 16, '2018-06-22 16:46:27', 1),
+(9, 16, '2018-06-22 16:48:48', 1);
 
 -- --------------------------------------------------------
 
@@ -187,7 +196,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `order_line`
 --
