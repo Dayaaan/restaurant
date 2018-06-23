@@ -60,4 +60,16 @@ class Tools {
 
 	}
 
+	static function getPriceTTCForPayment() {
+
+		$total = 0;
+
+		$getPrettyPrice = Tools::getPrettyPrice($price);
+
+		$total += $getPrettyPrice;
+
+
+
+	}
+
 }

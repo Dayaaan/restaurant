@@ -11,6 +11,15 @@ class ValidationModel {
 		$db->executeSql($sql,$orders);
 	}
 
+	static function saveOrderLine(array $orderline) {
+
+		$sql = "INSERT INTO `order_line` (product_id,order_id,priceHT,quantity) VALUES (:product_id,:order_id,:priceHT,:quantity)";
+
+		$db = new Database();
+
+		$db->executeSql($sql,$orderline);
+	}
+
 	static function getOrderById($id) {
 		$sql = "SELECT * FROM user WHERE id = ?";
 

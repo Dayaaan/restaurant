@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.8.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 22, 2018 at 05:01 PM
--- Server version: 5.7.22-0ubuntu0.16.04.1
--- PHP Version: 7.0.30-0ubuntu0.16.04.1
+-- Hôte : 127.0.0.1
+-- Généré le :  sam. 23 juin 2018 à 20:48
+-- Version du serveur :  10.1.30-MariaDB
+-- Version de PHP :  7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `restaurant`
+-- Base de données :  `restaurant`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking`
+-- Structure de la table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -36,7 +38,7 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `booking`
+-- Déchargement des données de la table `booking`
 --
 
 INSERT INTO `booking` (`id`, `created_at`, `seat_number`, `booking_date`, `booking_time`, `user_id`) VALUES
@@ -45,7 +47,7 @@ INSERT INTO `booking` (`id`, `created_at`, `seat_number`, `booking_date`, `booki
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Structure de la table `order`
 --
 
 CREATE TABLE `order` (
@@ -56,19 +58,22 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `order`
+-- Déchargement des données de la table `order`
 --
 
 INSERT INTO `order` (`id`, `user_id`, `created_at`, `status`) VALUES
 (6, 16, '2018-06-22 16:41:44', 1),
 (7, 16, '2018-06-22 16:42:49', 1),
 (8, 16, '2018-06-22 16:46:27', 1),
-(9, 16, '2018-06-22 16:48:48', 1);
+(9, 16, '2018-06-22 16:48:48', 1),
+(10, 16, '2018-06-23 15:01:52', 1),
+(11, 16, '2018-06-23 20:24:47', 1),
+(12, 16, '2018-06-23 20:25:00', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_line`
+-- Structure de la table `order_line`
 --
 
 CREATE TABLE `order_line` (
@@ -82,7 +87,7 @@ CREATE TABLE `order_line` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Structure de la table `product`
 --
 
 CREATE TABLE `product` (
@@ -97,7 +102,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product`
+-- Déchargement des données de la table `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `priceHT`, `quantity`, `image`, `created_at`, `update_at`) VALUES
@@ -111,7 +116,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `priceHT`, `quantity`, `imag
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -130,7 +135,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `birthday`, `email`, `password`, `address`, `city`, `zipcode`, `phone`, `created_at`, `updated_at`) VALUES
@@ -146,25 +151,25 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `birthday`, `email`, `passwor
 (18, 'Bernard', 'Jean', '1942-04-05', 'jeanbernard@gmail.com', '$2y$10$gOnuZWv0aw5riG89biGdoufYgLwfsmMP83oR.HqRUBRA2Csvi1RIi', '3 bd jules verne', 'nantes', '44300', '852545220', '2018-06-19 15:28:30', '2018-06-19 15:28:30');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `booking`
+-- Index pour la table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order`
+-- Index pour la table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order_line`
+-- Index pour la table `order_line`
 --
 ALTER TABLE `order_line`
   ADD PRIMARY KEY (`id`),
@@ -172,68 +177,74 @@ ALTER TABLE `order_line`
   ADD KEY `order_id` (`order_id`);
 
 --
--- Indexes for table `product`
+-- Index pour la table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `booking`
+-- AUTO_INCREMENT pour la table `booking`
 --
 ALTER TABLE `booking`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT pour la table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
--- AUTO_INCREMENT for table `order_line`
+-- AUTO_INCREMENT pour la table `order_line`
 --
 ALTER TABLE `order_line`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `booking`
+-- Contraintes pour la table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `order`
+-- Contraintes pour la table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `order_line`
+-- Contraintes pour la table `order_line`
 --
 ALTER TABLE `order_line`
   ADD CONSTRAINT `order_line_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `order_line_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
