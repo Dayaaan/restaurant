@@ -43,6 +43,10 @@ class LoginController
                     $_SESSION['id'] = $userByEmail['id'];
 
 
+                    $flashBag = new FlashBag();
+
+                    $flashBag->add("Bienvenue sur le site");
+
 
                     $http->redirectTo('');
 

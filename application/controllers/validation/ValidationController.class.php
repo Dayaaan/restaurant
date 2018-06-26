@@ -7,7 +7,6 @@ class ValidationController {
 
     public function httpGetMethod(Http $http, array $queryFields) {
 
-
         
     }
 
@@ -27,10 +26,10 @@ class ValidationController {
 
         $orders["status"] = 1;
 
-        ValidationModel::saveOrder($orders);
+        $orderId = ValidationModel::saveOrder($orders);
 
 
-        $http->redirectTo('Payment');
+        $http->redirectTo("Payment?id=$orderId");
        
 
     }

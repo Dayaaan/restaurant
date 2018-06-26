@@ -8,6 +8,10 @@ class Basket {
 		}
 	}
 
+    static function reset() {
+        $_SESSION["cart"] = [];
+    }
+
 	static function add($productId, $quantity) {
 
 			$cart = $_SESSION['cart'];

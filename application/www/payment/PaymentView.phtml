@@ -16,31 +16,17 @@
             <th>Prix Total</th>
         </tr>
     </thead>
-    <tfoot>
-        <tr>
-            <td></td>
-            <td colspan="2">Total HT</td>
-            <td>36.00 €</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td colspan="2">TVA (20 %)</td>
-            <td>7.20 €</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td class="colorful" colspan="2">Total TTC</td>
-            <td class="colorful">43.20 €</td>
-        </tr>
-    </tfoot>
     <tbody>
            <?php foreach ($products as $product): ?>
 
 
 
             <tr>
-                
-                <td><?= $product['name'] ?></td>
+                <td>
+                <img src="<?= $wwwUrl ?>/<?= $product["image"]; ?>" alt=""/> 
+
+                <?= $product['name'] ?>
+                </td>
                 <td><?= $product['quantity'] ?></td>
                 <td><?= Tools::getPriceTTC($product['priceHT']) ?> €</td>
                 <td><?= Tools::getPrettyPrice($product['priceHT'] * $product['quantity']) ?> €</td>
@@ -48,13 +34,31 @@
 
         <?php endforeach ?>
      </tbody>
+      <tfoot>
+        <tr>
+            <td></td>
+            <td colspan="2">Total HT :</td>
+            <td><?= $totalHT; ?> €</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2">TVA (20 %) :</td>
+            <td><?= number_format($totalHT * 0.20,2); ?> €</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="colorful" colspan="2">Total TTC :</td>
+            <td class="colorful"><?= number_format($totalHT*1.2,2); ?> €</td>
+        </tr>
+    </tfoot>
 </table>
 
 <hr>
 <h3>Merci de bien vouloir procéder au paiement de la commande.</h3>
-<form class="generic-form" action="/dev/resto/final/index.php/order/payment" method="POST">
+<form class="generic-form" action="<?= $requestUrl ?>/Success" method="POST">
 	<ul>
 		<li>
+            <input type="hidden" name="order_id" value="<?= $orderById["id"]; ?>"/>
 			<input class="button button-primary" type="submit" value="Payer">
 			<a class="button button-cancel small" href="/dev/resto/final/index.php">Annuler</a>
 		</li>

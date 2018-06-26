@@ -49,7 +49,9 @@ class BookingController
 
             $bookingModel->saveBooking($booking);
 
+            $flashBag = new FlashBag();
 
+            $flashBag->add("Votre réservation a bien été enregistré");
 
 
 

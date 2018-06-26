@@ -29,6 +29,14 @@
             <img src="<?= $wwwUrl ?>/images/logo.gif" height="63" width="57" alt="3WA Restaurant">Restaurant - Made In America !
         </a>
     </h1>
+    <?php $flashBag = new FlashBag();?>
+    <?php if ($flashBag->hasMessages()) :?>
+    <div>
+        <?php foreach ($flashBag->fetchMessages() as $message) :?>
+            <strong><?= $message; ?></strong>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
 </header>
 
 <!-- Interface utilisateur -->

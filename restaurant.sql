@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1
--- Généré le :  sam. 23 juin 2018 à 20:48
--- Version du serveur :  10.1.30-MariaDB
--- Version de PHP :  7.2.2
+-- Host: localhost
+-- Generation Time: Jun 26, 2018 at 03:24 PM
+-- Server version: 5.7.22-0ubuntu0.16.04.1
+-- PHP Version: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `restaurant`
+-- Database: `restaurant`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `booking`
+-- Table structure for table `booking`
 --
 
 CREATE TABLE `booking` (
@@ -38,16 +36,18 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `booking`
+-- Dumping data for table `booking`
 --
 
 INSERT INTO `booking` (`id`, `created_at`, `seat_number`, `booking_date`, `booking_time`, `user_id`) VALUES
-(1, '2018-06-19 15:21:56', 1, '2018-01-01', '12:00:00', 16);
+(1, '2018-06-19 15:21:56', 1, '2018-01-01', '12:00:00', 16),
+(2, '2018-06-25 14:27:01', 3, '2018-04-01', '12:00:00', 16),
+(3, '2018-06-26 11:17:29', 1, '2018-01-01', '12:00:00', 16);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `order`
+-- Table structure for table `order`
 --
 
 CREATE TABLE `order` (
@@ -58,36 +58,38 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `order`
+-- Dumping data for table `order`
 --
 
 INSERT INTO `order` (`id`, `user_id`, `created_at`, `status`) VALUES
-(6, 16, '2018-06-22 16:41:44', 1),
-(7, 16, '2018-06-22 16:42:49', 1),
-(8, 16, '2018-06-22 16:46:27', 1),
-(9, 16, '2018-06-22 16:48:48', 1),
-(10, 16, '2018-06-23 15:01:52', 1),
-(11, 16, '2018-06-23 20:24:47', 1),
-(12, 16, '2018-06-23 20:25:00', 1);
+(147, 16, '2018-06-26 14:30:44', 2);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `order_line`
+-- Table structure for table `order_line`
 --
 
 CREATE TABLE `order_line` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `priceHT` decimal(10,0) NOT NULL,
+  `priceHT` decimal(7,2) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `order_line`
+--
+
+INSERT INTO `order_line` (`id`, `product_id`, `order_id`, `priceHT`, `quantity`) VALUES
+(138, 1, 147, '2.50', 4),
+(139, 2, 147, '4.58', 2);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -102,7 +104,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `priceHT`, `quantity`, `image`, `created_at`, `update_at`) VALUES
@@ -116,7 +118,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `priceHT`, `quantity`, `imag
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -135,7 +137,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `birthday`, `email`, `password`, `address`, `city`, `zipcode`, `phone`, `created_at`, `updated_at`) VALUES
@@ -148,28 +150,29 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `birthday`, `email`, `passwor
 (15, 'zfez', 'fez', '1940-01-01', 'fezfz@gmail.com', '$2y$10$pHJqX/eLGEoMs2wOAkpd/eWwRYQevuSzqFoxGe4nltge6SOuwKzsi', 'ezfezf', 'fezf', 'ezfez', 'fezfez', '2018-06-19 15:12:38', '2018-06-19 15:12:38'),
 (16, 'Martin', 'Martin', '1940-01-01', 'MartinV@gmail.com', '$2y$10$/ytTVx9BscyFoFKeaUicW.9M8cjPCYyLr7LBosTQDTpmZAD27jDlS', 'Martin', 'Martin', '44400', '0240506554', '2018-06-19 15:15:14', '2018-06-19 15:15:14'),
 (17, 'fezfez', 'fezfez', '1940-01-01', 'fezfze@gmail.com', '$2y$10$BGEW91JStLQloKaOGyCFt..LgaOz7Yl8AAnOgmuHSTiyaKrC3ISly', 'fezfez', 'fezf', 'zef', 'ezfez', '2018-06-19 15:21:38', '2018-06-19 15:21:38'),
-(18, 'Bernard', 'Jean', '1942-04-05', 'jeanbernard@gmail.com', '$2y$10$gOnuZWv0aw5riG89biGdoufYgLwfsmMP83oR.HqRUBRA2Csvi1RIi', '3 bd jules verne', 'nantes', '44300', '852545220', '2018-06-19 15:28:30', '2018-06-19 15:28:30');
+(18, 'Bernard', 'Jean', '1942-04-05', 'jeanbernard@gmail.com', '$2y$10$gOnuZWv0aw5riG89biGdoufYgLwfsmMP83oR.HqRUBRA2Csvi1RIi', '3 bd jules verne', 'nantes', '44300', '852545220', '2018-06-19 15:28:30', '2018-06-19 15:28:30'),
+(19, 'Nguyen', 'Dayan', '1940-01-01', 'Dayaaan@gmail.com', '$2y$10$8R6ILXxbRbYSPowMiE5ozOCbD38rMLDcOlLsVq4AIjLByjIRW0MwO', 'Dayan', 'Reze', '44400', '0240505441', '2018-06-26 11:28:38', '2018-06-26 11:28:38');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `booking`
+-- Indexes for table `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Index pour la table `order`
+-- Indexes for table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Index pour la table `order_line`
+-- Indexes for table `order_line`
 --
 ALTER TABLE `order_line`
   ADD PRIMARY KEY (`id`),
@@ -177,74 +180,68 @@ ALTER TABLE `order_line`
   ADD KEY `order_id` (`order_id`);
 
 --
--- Index pour la table `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `booking`
+-- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `order`
+-- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 --
--- AUTO_INCREMENT pour la table `order_line`
+-- AUTO_INCREMENT for table `order_line`
 --
 ALTER TABLE `order_line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 --
--- AUTO_INCREMENT pour la table `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `booking`
+-- Constraints for table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Contraintes pour la table `order`
+-- Constraints for table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Contraintes pour la table `order_line`
+-- Constraints for table `order_line`
 --
 ALTER TABLE `order_line`
   ADD CONSTRAINT `order_line_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `order_line_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -10,6 +10,8 @@ class BookingModel {
 
 		$db->executeSql($sql,$booking);
 
+		
+
 	}
 
 }
